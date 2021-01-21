@@ -116,7 +116,7 @@ ___
 Add the latest version of the simple-router project running this command.
 
 ```
-composer require pecee/simple-router
+composer require Leo/simple-router
 ```
 
 ## Notes
@@ -167,7 +167,7 @@ You can find the demo-project here: [https://github.com/skipperbent/simple-route
 1. Navigate to your project folder in terminal and run the following command:
 
 ```php
-composer require pecee/simple-router
+composer require Leo/simple-router
 ```
 
 ### Setting up Nginx
@@ -275,7 +275,7 @@ It's not required, but you can set `SimpleRouter::setDefaultNamespace('\Demo\Con
 
 ```php
 <?php
-use Pecee\SimpleRouter\SimpleRouter;
+use Leo\SimpleRouter\SimpleRouter;
 
 /* Load external routes file */
 require_once 'routes.php';
@@ -300,10 +300,10 @@ To implement the functions below, simply copy the code to a new file and require
 ```php
 <?php
 
-use Pecee\SimpleRouter\SimpleRouter as Router;
-use Pecee\Http\Url;
-use Pecee\Http\Response;
-use Pecee\Http\Request;
+use Leo\SimpleRouter\SimpleRouter as Router;
+use Leo\Http\Url;
+use Leo\Http\Response;
+use Leo\Http\Request;
 
 /**
  * Get url for a route by using either name/alias, class or method name.
@@ -320,7 +320,7 @@ use Pecee\Http\Request;
  * @param string|null $name
  * @param string|array|null $parameters
  * @param array|null $getParams
- * @return \Pecee\Http\Url
+ * @return \Leo\Http\Url
  * @throws \InvalidArgumentException
  */
 function url(?string $name = null, $parameters = null, ?array $getParams = null): Url
@@ -329,7 +329,7 @@ function url(?string $name = null, $parameters = null, ?array $getParams = null)
 }
 
 /**
- * @return \Pecee\Http\Response
+ * @return \Leo\Http\Response
  */
 function response(): Response
 {
@@ -337,7 +337,7 @@ function response(): Response
 }
 
 /**
- * @return \Pecee\Http\Request
+ * @return \Leo\Http\Request
  */
 function request(): Request
 {
@@ -349,7 +349,7 @@ function request(): Request
  * @param string|null $index Parameter index name
  * @param string|null $defaultValue Default return value
  * @param array ...$methods Default methods
- * @return \Pecee\Http\Input\InputHandler|array|string|null
+ * @return \Leo\Http\Input\InputHandler|array|string|null
  */
 function input($index = null, $defaultValue = null, ...$methods)
 {
@@ -773,7 +773,7 @@ You can find many more examples in the `routes.php` example-file below:
 
 ```php
 <?php
-use Pecee\SimpleRouter\SimpleRouter;
+use Leo\SimpleRouter\SimpleRouter;
 
 /* Adding custom csrfVerifier here */
 SimpleRouter::csrfVerifier(new \Demo\Middlewares\CsrfVerifier());
@@ -873,7 +873,7 @@ Using ```*``` at the end for the url will match the entire url.
 ```php
 namespace Demo\Middlewares;
 
-use Pecee\Http\Middleware\BaseCsrfVerifier;
+use Leo\Http\Middleware\BaseCsrfVerifier;
 
 class CsrfVerifier extends BaseCsrfVerifier
 {
@@ -947,8 +947,8 @@ Middlewares are classes that loads before the route is rendered. A middleware ca
 ```php
 namespace Demo\Middlewares;
 
-use Pecee\Http\Middleware\IMiddleware;
-use Pecee\Http\Request;
+use Leo\Http\Middleware\IMiddleware;
+use Leo\Http\Request;
 
 class CustomMiddleware implements IMiddleware {
 
@@ -1001,9 +1001,9 @@ This is a basic example of an ExceptionHandler implementation (please see "[Easi
 ```php
 namespace Demo\Handlers;
 
-use Pecee\Http\Request;
-use Pecee\SimpleRouter\Handlers\IExceptionHandler;
-use Pecee\SimpleRouter\Exceptions\NotFoundHttpException;
+use Leo\Http\Request;
+use Leo\SimpleRouter\Handlers\IExceptionHandler;
+use Leo\SimpleRouter\Exceptions\NotFoundHttpException;
 
 class CustomExceptionHandler implements IExceptionHandler
 {
@@ -1173,7 +1173,7 @@ $id = url()->getParam('id');
 $absoluteUrl = url()->getAbsoluteUrl();
 ```
 
-For more available methods please check the `Pecee\Http\Url` class.
+For more available methods please check the `Leo\Http\Url` class.
 
 # Input & parameters
 
@@ -1246,7 +1246,7 @@ $object = input()->file($index, $defaultValue = null);
  * <input type="file" name="images[]" />
  */
 
-/* @var $image \Pecee\Http\Input\InputFile */
+/* @var $image \Leo\Http\Input\InputFile */
 foreach(input()->file('images', []) as $image)
 {
     if($image->getMime() === 'image/jpeg') 
@@ -1331,8 +1331,8 @@ When you've registered events, make sure to add it to the router by calling
 **Example:**
 
 ```php
-use Pecee\SimpleRouter\Handlers\EventHandler;
-use Pecee\SimpleRouter\Event\EventArgument;
+use Leo\SimpleRouter\Handlers\EventHandler;
+use Leo\SimpleRouter\Event\EventArgument;
 
 // --- your routes goes here ---
 
@@ -1356,7 +1356,7 @@ SimpleRouter::addEventHandler($eventHandler);
 
 `EventHandler` is the class that manages events and must inherit from the `IEventHandler` interface. The handler knows how to handle events for the given handler-type. 
 
-Most of the time the basic `\Pecee\SimpleRouter\Handler\EventHandler` class will be more than enough for most people as you simply register an event which fires when triggered.
+Most of the time the basic `\Leo\SimpleRouter\Handler\EventHandler` class will be more than enough for most people as you simply register an event which fires when triggered.
 
 Let's go over how to create your very own event-handler class.
 
@@ -1365,8 +1365,8 @@ Below is a basic example of a custom event-handler called `DatabaseDebugHandler`
 ```php
 namespace Demo\Handlers;
 
-use Pecee\SimpleRouter\Event\EventArgument;
-use Pecee\SimpleRouter\Router;
+use Leo\SimpleRouter\Event\EventArgument;
+use Leo\SimpleRouter\Router;
 
 class DatabaseDebugHandler implements IEventHandler
 {
@@ -1435,9 +1435,9 @@ class DatabaseDebugHandler implements IEventHandler
 
 Sometimes it can be useful to manipulate the route about to be loaded.
 simple-php-router allows you to easily manipulate and change the routes which are about to be rendered.
-All information about the current route is stored in the `\Pecee\SimpleRouter\Router` instance's `loadedRoute` property.
+All information about the current route is stored in the `\Leo\SimpleRouter\Router` instance's `loadedRoute` property.
 
-For easy access you can use the shortcut helper function `request()` instead of calling the class directly `\Pecee\SimpleRouter\SimpleRouter::router()`.
+For easy access you can use the shortcut helper function `request()` instead of calling the class directly `\Leo\SimpleRouter\SimpleRouter::router()`.
 
 
 ```php
@@ -1455,9 +1455,9 @@ Sometimes it can be necessary to keep urls stored in the database, file or simil
 To interfere with the router, we create a class that implements the ```IRouterBootManager``` interface. This class will be loaded before any other rules in ```routes.php``` and allow us to "change" the current route, if any of our criteria are fulfilled (like coming from the url ```/my-cat-is-beatiful```).
 
 ```php
-use Pecee\Http\Request;
-use Pecee\SimpleRouter\IRouterBootManager;
-use Pecee\SimpleRouter\Router;
+use Leo\Http\Request;
+use Leo\SimpleRouter\IRouterBootManager;
+use Leo\SimpleRouter\Router;
 
 class CustomRouterRules implement IRouterBootManager 
 {
@@ -1465,10 +1465,10 @@ class CustomRouterRules implement IRouterBootManager
     /**
      * Called when router is booting and before the routes is loaded.
      *
-     * @param \Pecee\SimpleRouter\Router $router
-     * @param \Pecee\Http\Request $request
+     * @param \Leo\SimpleRouter\Router $router
+     * @param \Leo\Http\Request $request
      */
-    public function boot(\Pecee\SimpleRouter\Router $router, \Pecee\Http\Request $request): void
+    public function boot(\Leo\SimpleRouter\Router $router, \Leo\Http\Request $request): void
     {
 
         $rewriteRules = [
@@ -1508,8 +1508,8 @@ The ```SimpleRouter``` class referenced in the previous example, is just a simpl
 If you are up for a challenge, want the full control or simply just want to create your own ```Router``` helper class, this example is for you.
 
 ```php
-use \Pecee\SimpleRouter\Router;
-use \Pecee\SimpleRouter\Route\RouteUrl;
+use \Leo\SimpleRouter\Router;
+use \Leo\SimpleRouter\Route\RouteUrl;
 
 /* Create new Router instance */
 $router = new Router();
@@ -1541,7 +1541,7 @@ The framework has it's own ```Router``` class which inherits from the ```SimpleR
 ```php
 namespace Demo;
 
-use Pecee\SimpleRouter\SimpleRouter;
+use Leo\SimpleRouter\SimpleRouter;
 
 class Router extends SimpleRouter {
 
@@ -1605,7 +1605,7 @@ if($isRunningLocally) {
     $eventHandler = new EventHandler();
     $eventHandler->register(EventHandler::EVENT_ADD_ROUTE, function (EventArgument $arg) use (&$status) {
 
-        if ($arg->route instanceof \Pecee\SimpleRouter\Route\LoadableRoute) {
+        if ($arg->route instanceof \Leo\SimpleRouter\Route\LoadableRoute) {
             $arg->route->prependUrl('/local-path');
         }
 

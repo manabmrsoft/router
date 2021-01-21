@@ -6,8 +6,8 @@ require_once 'Dummy/Handler/ExceptionHandler.php';
 require_once 'Dummy/Security/SilentTokenProvider.php';
 require_once 'Dummy/Managers/TestBootManager.php';
 
-use Pecee\SimpleRouter\Event\EventArgument;
-use Pecee\SimpleRouter\Handlers\EventHandler;
+use Leo\SimpleRouter\Event\EventArgument;
+use Leo\SimpleRouter\Handlers\EventHandler;
 
 class EventHandlerTest extends \PHPUnit\Framework\TestCase
 {
@@ -28,7 +28,7 @@ class EventHandlerTest extends \PHPUnit\Framework\TestCase
         TestRouter::addEventHandler($eventHandler);
 
         // Add rewrite
-        TestRouter::error(function (\Pecee\Http\Request $request, \Exception $error) {
+        TestRouter::error(function (\Leo\Http\Request $request, \Exception $error) {
 
             // Trigger rewrite
             $request->setRewriteUrl('/');
@@ -44,7 +44,7 @@ class EventHandlerTest extends \PHPUnit\Framework\TestCase
         TestRouter::router()->getUrl('home');
 
         // Add csrf-verifier
-        $csrfVerifier = new \Pecee\Http\Middleware\BaseCsrfVerifier();
+        $csrfVerifier = new \Leo\Http\Middleware\BaseCsrfVerifier();
         $csrfVerifier->setTokenProvider(new SilentTokenProvider());
         TestRouter::csrfVerifier($csrfVerifier);
 
@@ -84,7 +84,7 @@ class EventHandlerTest extends \PHPUnit\Framework\TestCase
         $eventHandler = new EventHandler();
         $eventHandler->register(EventHandler::EVENT_ADD_ROUTE, function (EventArgument $arg) use (&$status) {
 
-            if ($arg->route instanceof \Pecee\SimpleRouter\Route\LoadableRoute) {
+            if ($arg->route instanceof \Leo\SimpleRouter\Route\LoadableRoute) {
                 $arg->route->prependUrl('/local-path');
             }
 

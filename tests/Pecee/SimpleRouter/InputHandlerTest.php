@@ -34,8 +34,8 @@ class InputHandlerTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($names, $handler->value('names'));
         $this->assertEquals($names, $handler->all(['names'])['names']);
         $this->assertEquals($day, $handler->value('day'));
-        $this->assertInstanceOf(\Pecee\Http\Input\InputItem::class, $handler->find('day'));
-        $this->assertInstanceOf(\Pecee\Http\Input\InputItem::class, $handler->post('day'));
+        $this->assertInstanceOf(\Leo\Http\Input\InputItem::class, $handler->find('day'));
+        $this->assertInstanceOf(\Leo\Http\Input\InputItem::class, $handler->post('day'));
 
         // Check non-existing and wrong request-type
         $this->assertEmpty($handler->all(['non-existing']));
@@ -48,9 +48,9 @@ class InputHandlerTest extends \PHPUnit\Framework\TestCase
 
         $this->assertCount(4, $objects);
 
-        /* @var $object \Pecee\Http\Input\InputItem */
+        /* @var $object \Leo\Http\Input\InputItem */
         foreach($objects as $i => $object) {
-            $this->assertInstanceOf(\Pecee\Http\Input\InputItem::class, $object);
+            $this->assertInstanceOf(\Leo\Http\Input\InputItem::class, $object);
             $this->assertEquals($names[$i], $object->getValue());
         }
 
@@ -84,8 +84,8 @@ class InputHandlerTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($names, $handler->value('names'));
         $this->assertEquals($names, $handler->all(['names'])['names']);
         $this->assertEquals($day, $handler->value('day'));
-        $this->assertInstanceOf(\Pecee\Http\Input\InputItem::class, $handler->find('day'));
-        $this->assertInstanceOf(\Pecee\Http\Input\InputItem::class, $handler->get('day'));
+        $this->assertInstanceOf(\Leo\Http\Input\InputItem::class, $handler->find('day'));
+        $this->assertInstanceOf(\Leo\Http\Input\InputItem::class, $handler->get('day'));
 
         // Check non-existing and wrong request-type
         $this->assertEmpty($handler->all(['non-existing']));
@@ -98,9 +98,9 @@ class InputHandlerTest extends \PHPUnit\Framework\TestCase
 
         $this->assertCount(4, $objects);
 
-        /* @var $object \Pecee\Http\Input\InputItem */
+        /* @var $object \Leo\Http\Input\InputItem */
         foreach($objects as $i => $object) {
-            $this->assertInstanceOf(\Pecee\Http\Input\InputItem::class, $object);
+            $this->assertInstanceOf(\Leo\Http\Input\InputItem::class, $object);
             $this->assertEquals($names[$i], $object->getValue());
         }
 

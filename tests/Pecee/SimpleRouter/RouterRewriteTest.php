@@ -60,9 +60,9 @@ class RouteRewriteTest extends \PHPUnit\Framework\TestCase
 
     public function testRewriteExceptionMessage()
     {
-        $this->expectException(\Pecee\SimpleRouter\Exceptions\NotFoundHttpException::class);
+        $this->expectException(\Leo\SimpleRouter\Exceptions\NotFoundHttpException::class);
 
-        TestRouter::error(function (\Pecee\Http\Request $request, \Exception $error) {
+        TestRouter::error(function (\Leo\Http\Request $request, \Exception $error) {
 
             if (strtolower($request->getUrl()->getPath()) === '/my/test/') {
                 $request->setRewriteUrl('/another-non-existing');
@@ -129,7 +129,7 @@ class RouteRewriteTest extends \PHPUnit\Framework\TestCase
     {
 
         TestRouter::get('/match', function () {
-            TestRouter::request()->setRewriteRoute(new \Pecee\SimpleRouter\Route\RouteUrl('/match', function () {
+            TestRouter::request()->setRewriteRoute(new \Leo\SimpleRouter\Route\RouteUrl('/match', function () {
                 return 'ok';
             }));
         });

@@ -43,7 +43,7 @@ class RouterRouteTest extends \PHPUnit\Framework\TestCase
 
     public function testNotFound()
     {
-        $this->expectException('\Pecee\SimpleRouter\Exceptions\NotFoundHttpException');
+        $this->expectException('\Leo\SimpleRouter\Exceptions\NotFoundHttpException');
         TestRouter::get('/non-existing-path', 'DummyController@method1');
         TestRouter::debug('/test-param1-param2', 'post');
     }

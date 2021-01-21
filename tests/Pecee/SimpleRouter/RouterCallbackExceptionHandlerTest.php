@@ -15,7 +15,7 @@ class RouterCallbackExceptionHandlerTest extends \PHPUnit\Framework\TestCase
         TestRouter::get('/my-new-url', 'DummyController@method2');
         TestRouter::get('/my-url', 'DummyController@method1');
 
-        TestRouter::error(function (\Pecee\Http\Request $request, \Exception $exception) {
+        TestRouter::error(function (\Leo\Http\Request $request, \Exception $exception) {
             throw new ExceptionHandlerException();
         });
 

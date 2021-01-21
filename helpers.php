@@ -1,9 +1,9 @@
 <?php
 
-use Pecee\SimpleRouter\SimpleRouter as Router;
-use Pecee\Http\Url;
-use Pecee\Http\Response;
-use Pecee\Http\Request;
+use Leo\SimpleRouter\SimpleRouter as Router;
+use Leo\Http\Url;
+use Leo\Http\Response;
+use Leo\Http\Request;
 
 /**
  * Get url for a route by using either name/alias, class or method name.
@@ -20,7 +20,7 @@ use Pecee\Http\Request;
  * @param string|null $name
  * @param string|array|null $parameters
  * @param array|null $getParams
- * @return \Pecee\Http\Url
+ * @return \Leo\Http\Url
  * @throws \InvalidArgumentException
  */
 function url(?string $name = null, $parameters = null, ?array $getParams = null): Url
@@ -29,7 +29,7 @@ function url(?string $name = null, $parameters = null, ?array $getParams = null)
 }
 
 /**
- * @return \Pecee\Http\Response
+ * @return \Leo\Http\Response
  */
 function response(): Response
 {
@@ -37,7 +37,7 @@ function response(): Response
 }
 
 /**
- * @return \Pecee\Http\Request
+ * @return \Leo\Http\Request
  */
 function request(): Request
 {
@@ -49,7 +49,7 @@ function request(): Request
  * @param string|null $index Parameter index name
  * @param string|null $defaultValue Default return value
  * @param array ...$methods Default methods
- * @return \Pecee\Http\Input\InputHandler|array|string|null
+ * @return \Leo\Http\Input\InputHandler|array|string|null
  */
 function input($index = null, $defaultValue = null, ...$methods)
 {

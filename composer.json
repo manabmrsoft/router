@@ -1,12 +1,12 @@
 {
-  "name": "pecee/simple-router",
+  "name": "Leo/simple-router",
   "description": "Simple, fast PHP router that is easy to get integrated and in almost any project. Heavily inspired by the Laravel router.",
   "keywords": [
     "router"
   ],
   "license": "MIT",
   "support": {
-    "source": "codepoetry.in"
+    "source": "https://github.com/skipperbent/simple-php-router/issues"
   },
   "authors": [
     {
@@ -25,7 +25,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Pecee\\": "src/Pecee/"
+      "Leo\\": "src/Leo/"
     }
   }
 }

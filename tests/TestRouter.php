@@ -1,13 +1,13 @@
 <?php
 
-class TestRouter extends \Pecee\SimpleRouter\SimpleRouter
+class TestRouter extends \Leo\SimpleRouter\SimpleRouter
 {
 
     public static function debugNoReset($testUrl, $testMethod = 'get')
     {
         $request = static::request();
 
-        $request->setUrl((new \Pecee\Http\Url($testUrl))->setHost('local.unitTest'));
+        $request->setUrl((new \Leo\Http\Url($testUrl))->setHost('local.unitTest'));
         $request->setMethod($testMethod);
 
         static::start();
