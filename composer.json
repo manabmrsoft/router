@@ -1,0 +1,31 @@
+{
+  "name": "pecee/simple-router",
+  "description": "Simple, fast PHP router that is easy to get integrated and in almost any project. Heavily inspired by the Laravel router.",
+  "keywords": [
+    "router"
+  ],
+  "license": "MIT",
+  "support": {
+    "source": "codepoetry.in"
+  },
+  "authors": [
+    {
+      "name": "Manab Roy",
+      "email": "manabroy72@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.1",
+    "ext-json": "*",
+    "php-di/php-di": "^6.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.0",
+    "mockery/mockery": "^1"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pecee\\": "src/Pecee/"
+    }
+  }
+}
